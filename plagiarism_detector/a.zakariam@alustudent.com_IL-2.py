@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-ALU PLAGIARISM DETECTOR APPLICATION:
-This program compares two essays and determines plagiarism percentage
+MY ALU PLAGIARISM DETECTOR APPLICATION:
+This Plagiarism detector program compares two essays and determines their plagiarism percentage
 using set operations and text analysis.
 """
 import re
@@ -11,7 +11,7 @@ from collections import Counter
 class PlagiarismDetector:
     def __init__(self, file1_path, file2_path):
         """
-        Initialize the PlagiarismDetector with two essay file paths
+        This helps Initialize the PlagiarismDetector with the two essay file paths
 
         Args:
             file1_path (str): Path to the first essay file
@@ -28,13 +28,13 @@ class PlagiarismDetector:
 
     def read_files(self):
         """
-        Read both essay files and store their content
+       This Reads both essay files and store their contents
 
         Returns:
-            bool: True if both files were read successfully, False otherwise
+            bool:It shows True if both files were read successfully and shows False otherwise
         """
         try:
-            # Check if the files exist
+            # Check if the files exist before
             if not os.path.exists(self.file1_path):
                 print(f"Error: File '{self.file1_path}' not found.")
                 return False
@@ -42,11 +42,11 @@ class PlagiarismDetector:
                 print(f"Error: File '{self.file2_path}' not found.")
                 return False
 
-            # Read essay 1
+            # This Reads essay 1
             with open(self.file1_path, 'r', encoding='utf-8') as file1:
                 self.essay1_content = file1.read()
 
-            # Read essay 2
+            # This Reads essay 2
             with open(self.file2_path, 'r', encoding='utf-8') as file2:
                 self.essay2_content = file2.read()
 
@@ -59,23 +59,23 @@ class PlagiarismDetector:
 
     def preprocess_text(self, text):
         """
-        Preprocess text by removing punctuation, converting to lowercase,
-        and splitting into words
+        Preprocess the text by removing punctuation, converting to lowercase,
+        and splitting them into words
 
-        Args:
+        Args:\
             text (str): Raw text to preprocess
 
         Returns:
             list: List of the preprocessed words
         """
-        # Convert to lowercase
+        # Convert to lowercase.
         text = text.lower()
 
-        # Remove punctuation and split into words
-        # This regex keeps only letters, numbers, and spaces
+        # Remove the punctuations and split them into words
+        # This regex helps keeps only letters, numbers, and spaces
         words = re.findall(r'\b[a-zA-Z]+\b', text)
 
-        # Filter out the empty strings and very short words
+        # Filter out the empty strings and very short words to it
         words = [word for word in words if len(word) > 1]
 
         return words
@@ -178,13 +178,13 @@ class PlagiarismDetector:
         essay1_set = set(self.essay1_word_count.keys())
         essay2_set = set(self.essay2_word_count.keys())
 
-        # Calculate intersection (common words)
+        # Calculate intersection of the common words
         intersection = essay1_set.intersection(essay2_set)
 
-        # Calculate union (all unique words)
+        # Calculate all the unique words
         union = essay1_set.union(essay2_set)
 
-        # Calculate plagiarism percentage
+        # Calculate the plagiarism percentage
         if len(union) == 0:
             plagiarism_percentage = 0
         else:
@@ -194,7 +194,7 @@ class PlagiarismDetector:
         print(f"Total unique words (union): {len(union)}")
         print(f"Plagiarism percentage: {plagiarism_percentage:.2f}%")
 
-        # Determine if there is plagiarism (50% threshold)
+        # This Determines if there is plagiarism of about 50%
         if plagiarism_percentage >= 50:
             print("\n PLAGIARISM DETECTED!")
             print("The essays show significant similarity (≥50%)")
@@ -206,7 +206,7 @@ class PlagiarismDetector:
 
     def display_menu(self):
         """
-        Display the main menu options
+        Displays the main menu options for you to select
         """
         print("\n" + "="*50)
         print("PLAGIARISM DETECTOR MENU")
@@ -220,17 +220,17 @@ class PlagiarismDetector:
 
     def run(self):
         """
-        Main program loop
+       The Main program loop
         """
         print("="*60)
-        print("         PLAGIARISM DETECTOR APPLICATION")
+        print("         PLAGIARISM APPLICATION")
         print("="*60)
 
-        # Read the essay files
+        # This Reads the essay files
         if not self.read_files():
             return
 
-        # Analyze the essays
+        # This is to Analyze the essays
         self.analyze_essays()
 
         while True:
@@ -242,7 +242,7 @@ class PlagiarismDetector:
                     self.find_common_words()
 
                 elif choice == '2':
-                    word = input("Enter word to search: ").strip()
+                    word = input("Enter a word to search: ").strip()
                     self.search_word(word)
 
                 elif choice == '3':
@@ -254,7 +254,7 @@ class PlagiarismDetector:
                     self.calculate_plagiarism_percentage()
 
                 elif choice == '5':
-                    print("\nThank you for using Plagiarism Detector!")
+                    print("\nThank You for using our Plagiarism Detector!")
                     break
 
                 else:
@@ -268,13 +268,13 @@ class PlagiarismDetector:
 
 def main():
     """
-    Main function to run the plagiarism detector
+    This is the Main function to run the plagiarism detector
     """
-    # Define file paths
+    # Define the file paths
     essay1_file = "essay1.txt"
     essay2_file = "essay2.txt"
 
-    # Create and run the plagiarism detector
+    # This creates and run the plagiarism detector
     detector = PlagiarismDetector(essay1_file, essay2_file)
     detector.run()
 
